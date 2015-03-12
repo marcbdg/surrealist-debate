@@ -1,0 +1,67 @@
+.htmlTemplate {
+	display: none;
+}
+.main article {
+   width: 100%;
+}
+
+#brackets {
+   -webkit-transition: all .4s ease-in;
+   -webkit-transform-origin: top left;   
+}
+
+.bracket {
+/*	width: 46%;*/
+	float: left;
+	padding: 1%;
+	background: #FFE4C4;
+	margin: 1%;
+}
+.semifinals {
+	float: left;
+}
+
+.topic {
+   border: 1px solid #333;
+   background: #FFFAF0;
+}
+.match {
+   margin-top: 1em;
+   text-align: center;
+   padding: 5%;
+   background: #FFA07A;
+}
+.versus {
+   font-size: .7em;
+   line-height: 2em;
+   text-align: center;
+}
+
+.bracket > .round {
+   width: 100px;
+}
+
+.finals,
+.semifinals {
+	display: none;
+}
+
+/* -- old css from other project */ 
+.foldingMode [data-foldlevel="0"] {
+   background: transparent;
+}
+.foldingMode [data-foldlevel="1"] {
+   background: rgba(0,0,0,.2);
+}
+.foldingMode [data-foldlevel="2"] {
+   background: rgba(0,0,0,.4);
+}
+.foldingMode [data-foldlevel="3"] {
+   background: rgba(0,0,0,.6);
+}
+.foldingMode [data-foldlevel="4"] {
+   background: rgba(0,0,0,.8);
+}
+.foldingMode [data-foldlevel="5"] {
+   background: rgba(0,0,0,1);
+}
