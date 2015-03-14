@@ -4,6 +4,9 @@ $( document ).ready(function() {
    setupGame(16);
 
    // Attatch event handlers
+   $("#startGameButton").on("click",function(){
+	   $("#brackets").css({"-webkit-transform": "scale(3)"});
+   });
 
    // testcode
 
@@ -44,12 +47,6 @@ function setupGame(gameSize) {
          $matches.append($match);
       }
    }
-   
-   // Zoom in on the top of the 1st bracket
-   // setTimeout(function(){
-   //    $("#brackets").css({"-webkit-transform": "scale(2)"});
-   // }, 2000);
-
 }
 
 /* -------------------- */
