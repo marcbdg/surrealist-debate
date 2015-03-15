@@ -40,8 +40,11 @@
    text-align: center;
 }
 
-.bracket > .round {
+.round {
    width: 100px;
+   background: #F00;
+   padding: 10px;
+   margin: 10px;
 }
 
 .finals,

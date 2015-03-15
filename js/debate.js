@@ -16,7 +16,7 @@ $( document ).ready(function() {
 function setupGame(gameSize) {
 
    // First do some cleanup
-   $(".matches").empty();
+   $(".round").remove();
    $("#brackets").css({"-webkit-transform": "scale(1)"});
    $("#numTopics").html(gameSize);
    
@@ -37,15 +37,27 @@ function setupGame(gameSize) {
    var bracketSize = gameSize / 4;
    for (var i=0; i<4; i++) {
       var $bracket = $("#bracket" + (i+1)),
-            $matches = $bracket.find(".matches");
+	   numMatches = bracketSize/2;
       
-      for (var j=0; j<bracketSize/2; j++) {
-         var $match = $("<div class='match'></div>");
-         $match.append("<div class='topic'>" + Topics[j+(i*bracketSize/2)][1][0] + "</div>");
-         $match.append("<div class='versus'>vs.</div>");
-         $match.append("<div class='topic'>" + Topics[j+(i*bracketSize/2)][1][1] + "</div>");
-         $matches.append($match);
-      }
+	  // Add enough rounds to each bracket to get to the semi-final
+	  while (numMatches >= 1) {
+		  var $round = $("<div class='round'></div>");
+		  $bracket.append($round);
+
+		  // And fill each round with the right number of matches
+	      for (var j=0; j<numMatches; j++) {
+	          var $match = $("<div class='match'></div>");
+			  
+			  // If this is the first round within a bracket, fill it with matches from the weighted and sorted Topics
+			  if ($bracket.find(".round").length == 1) {
+		          $match.append("<div class='topic'>" + Topics[j+(i*bracketSize/2)][1][0] + "</div>");
+		          $match.append("<div class='versus'>vs.</div>");
+		          $match.append("<div class='topic'>" + Topics[j+(i*bracketSize/2)][1][1] + "</div>");
+			  }
+			  $round.append($match);
+		  }
+		  numMatches = numMatches / 2;
+	  }
    }
 }
 
