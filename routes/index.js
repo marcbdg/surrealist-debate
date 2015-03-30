@@ -1,5 +1,4 @@
 var express = require('express');
-var hogan = require('hogan.js');
 var router = express.Router();
 
 /* GET home page. */
