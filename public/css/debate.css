@@ -17,8 +17,8 @@
 	background: #FFE4C4;
 	margin: 1%;
 }
-#bracket3, #bracket4,
-#bracket3 .round, #bracket4 .round {
+.bracket-3, .bracket-4,
+.bracket-3 .round, .bracket-4 .round {
 	float: right;
 }
 .semifinals {

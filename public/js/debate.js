@@ -36,26 +36,28 @@ function setupGame(gameSize) {
    // Set up each of the 4 brackets
    var bracketSize = gameSize / 4;
    for (var i=0; i<4; i++) {
-      var $bracket = $("#bracket" + (i+1)),
+      var $bracket = $(".bracket-" + (i+1)),
 	   numMatches = bracketSize/2;
       
 	  // Add enough rounds to each bracket to get to the semi-final
+	  var roundNum = 1;
 	  while (numMatches >= 1) {
-		  var $round = $("<div class='round'></div>");
+		  var $round = $("<div class='round round-" + roundNum + "'></div>");
 		  $bracket.append($round);
 
 		  // And fill each round with the right number of matches
 	      for (var j=0; j<numMatches; j++) {
-	          var $match = $("<div class='match'></div>");
+	          var $match = $("<div class='match match-" + (j+1) + "'></div>");
 			  
 			  // If this is the first round within a bracket, fill it with matches from the weighted and sorted Topics
 			  if ($bracket.find(".round").length == 1) {
 		          $match.append("<div class='topic'>" + Topics[j+(i*bracketSize/2)][1][0] + "</div>");
-		          $match.append("<div class='versus'>vs.</div>");
+		          // $match.append("<div class='versus'>vs.</div>");
 		          $match.append("<div class='topic'>" + Topics[j+(i*bracketSize/2)][1][1] + "</div>");
 			  }
 			  $round.append($match);
 		  }
+		  roundNum++;
 		  numMatches = numMatches / 2;
 	  }
    }
