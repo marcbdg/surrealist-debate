@@ -42,7 +42,7 @@
                         <div style="border: 2px dotted #333; float: right; padding: 20px; background: #ccc">
                         	<b>What's Next:</b>
                         	<ul style="margin:0;">
-                        		<li>lay out all rounds</li>
+                        		<li>populate next round when selecting any winner</li>
                         	</ul>
                         </div>
 
