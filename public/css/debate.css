@@ -35,6 +35,9 @@
    padding: 5%;
    background: #FFA07A;
 }
+.selected {
+	background: #ffa;
+}
 .versus {
    font-size: .7em;
    line-height: 2em;

@@ -1,14 +1,22 @@
 $( document ).ready(function() {
 
-   // Set up and draw the 1st level
-   setupGame(16);
+	// Set up and draw the 1st level
+	setupGame(16);
 
-   // Attatch event handlers
-   $("#startGameButton").on("click",function(){
-	   $("#brackets").css({"-webkit-transform": "scale(3)"});
-   });
+	// Attatch event handlers
+	$("#startGameButton").on("click",function(){
+		$("#brackets").css({"-webkit-transform": "scale(3)"});
+	});
 
-   // testcode
+	$(".topic").on("click",function(){
+		if ($(this).is(".selected")) {
+			$(this).removeClass("selected");
+		} else {
+			$(this).addClass("selected");
+		}
+	});
+
+	// testcode
 
 });
 
