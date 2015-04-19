@@ -9,11 +9,19 @@ $( document ).ready(function() {
 	});
 
 	$(".topic").on("click",function(){
-		if ($(this).is(".selected")) {
-			$(this).removeClass("selected");
-		} else {
-			$(this).addClass("selected");
+		
+		// Get a handle to the match that the topic is in to find out if another topic is already selected or not
+		var $match = $(this).parent();
+		if ($match.has(".selected").length) {
+			$match.find(".selected").removeClass("selected");
 		}
+		$(this).addClass("selected");
+		
+		// if ($(this).is(".selected")) {
+		// 	$(this).removeClass("selected");
+		// } else {
+		// 	$(this).addClass("selected");
+		// }
 	});
 
 	// testcode
