@@ -8,7 +8,8 @@ $( document ).ready(function() {
 		$("#brackets").css({"-webkit-transform": "scale(3)"});
 	});
 
-	$(".topic").on("click",function(){
+	// When a topic is selected, advance it to the next round
+	$(document).on("click", ".topic", function(){
 		
 		// Get a handle to the match that the topic is in to find out if another topic is already selected or not
 		var $match = $(this).parent();
@@ -17,16 +18,27 @@ $( document ).ready(function() {
 		}
 		$(this).addClass("selected");
 		
-		// if ($(this).is(".selected")) {
-		// 	$(this).removeClass("selected");
-		// } else {
-		// 	$(this).addClass("selected");
-		// }
+		// Promote the selected topic to the correct match in the next round
+		// Find which match this is within the round
+		var matchInCurrentRound = getPrefixedNumberFromClassList($match, "match-");
+		console.log("Match #" + matchInCurrentRound + " winner goes in to match " + (Math.ceil(matchInCurrentRound/2)) );
+		
 	});
 
 	// testcode
 
 });
+
+function getPrefixedNumberFromClassList(element, prefix) {
+	var value = false;
+	var classList = $(element).attr("class").split(/\s+/);
+	$.each( classList, function(index, item){
+		if (item.indexOf(prefix) != -1) {
+			value = item.substring(prefix.length);
+		}
+	});
+	return value;
+}
 
 
 function setupGame(gameSize) {
