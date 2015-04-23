@@ -21,7 +21,7 @@
 .bracket-3 .round, .bracket-4 .round {
 	float: right;
 }
-.semifinals {
+.round-semi {
 	float: left;
 }
 
@@ -55,9 +55,14 @@
    float: left;
 }
 
-.finals,
-.semifinals {
+.round-final,
+.round-semi {
 	display: none;
+}
+.round-final {
+	float: none;
+	margin: 10px auto;
+	width: 200px;
 }
 
 /* -- old css from other project */ 

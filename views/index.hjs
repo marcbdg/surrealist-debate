@@ -66,26 +66,18 @@
                              <div class="bracket bracket-1">
                                 <div>bracket 1</div>
                              </div>
-							 <div id="upperBracketWinners" class="semifinals round-semi">
+							 <div id="upperBracketWinners" class="round round-semi">
 								 Semifinals
-							 	<div class="match">
-									<div class="topic"></div>
-									<!-- <div class="versus">vs.</div> -->
-									<div class="topic"></div>
-								</div>
+							 	<div class="match"></div>
 							 </div>
                              <div class="bracket bracket-3">
                                 <div>bracket 3</div>
                              </div>
                           </div>
 
-                          <div id="championshipMatch" class="finals round-final">
+                          <div id="championshipMatch" class="round round-final">
 							  Finals
-							  <div class="match">
-								<div class="topic"></div>
-								<!-- <div class="versus">vs.</div> -->
-								<div class="topic"></div>
-							  </div>
+							  <div class="match"></div>
                           </div>
 
                           <div id="lowerBrackets" class="clearfix">
@@ -93,13 +85,9 @@
                                 <div>bracket 2</div>
                              </div>
 
-							 <div id="lowerBracketWinners" class="semifinals round-semi">
+							 <div id="lowerBracketWinners" class="round round-semi">
 								 Semifinals
-							 	<div class="match">
-									<div class="topic"></div>
-									<!-- <div class="versus">vs.</div> -->
-									<div class="topic"></div>
-								</div>
+							 	<div class="match"></div>
 							 </div>
 
                              <div class="bracket bracket-4">

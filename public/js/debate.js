@@ -12,32 +12,28 @@ $( document ).ready(function() {
 	$(document).on("click", ".topic", function(){
 		
 		// Get a handle on the topic's parent match
-		var $match = $(this).parent()
+		var $topic = $(this),
+			$match = $topic.parent()
 		
 		// If the match isn't already decided, continue
 		if (! $match.is(".decided")) {
 
 			// Get a handle to the round and bracket numbers
 			var roundNum = getPrefixedNumberFromClassList( $match.parent(), "round-") * 1,
-				bracketNum = getPrefixedNumberFromClassList( $(this).parents(".bracket"), "bracket-") * 1;
+				bracketNum = getPrefixedNumberFromClassList( $topic.parents(".bracket"), "bracket-") * 1;
 
-			// Set the match as decided
+			// Set the topic as selected and the match as decided
+			$topic.addClass("selected");
 			$match.addClass("decided");
-				
-			if ($match.has(".selected").length) {
-				$match.find(".selected").removeClass("selected");
-			}
-			$(this).addClass("selected");
 		
 			// Promote the selected topic to the correct match in the next round
-			// Find which match this is within the round
 			var matchInCurrentRound = getPrefixedNumberFromClassList($match, "match-"),
 				matchInNextRound = Math.ceil(matchInCurrentRound/2),
 				nextRound = getPrefixedNumberFromClassList($match.parent(), "round-") * 1 + 1;
 		
 			console.log(".bracket-" + bracketNum + " .round-" + nextRound + " match-" + matchInNextRound);
 			$(".bracket-" + bracketNum + " .round-" + (roundNum + 1) + " .match-" + matchInNextRound).append(
-				"<div class='topic'>" + $(this).html() + "</div>"
+				"<div class='topic'>" + $topic.html() + "</div>"
 			);
 
 		}
@@ -63,7 +59,7 @@ function getPrefixedNumberFromClassList(element, prefix) {
 function setupGame(gameSize) {
 
    // First do some cleanup
-   $(".round").remove();
+   $(".round").not(".round-semi, .round-final").remove();
    $("#brackets").css({"-webkit-transform": "scale(1)"});
    $("#numTopics").html(gameSize);
    
