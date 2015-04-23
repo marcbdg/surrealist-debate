@@ -11,17 +11,36 @@ $( document ).ready(function() {
 	// When a topic is selected, advance it to the next round
 	$(document).on("click", ".topic", function(){
 		
-		// Get a handle to the match that the topic is in to find out if another topic is already selected or not
-		var $match = $(this).parent();
-		if ($match.has(".selected").length) {
-			$match.find(".selected").removeClass("selected");
-		}
-		$(this).addClass("selected");
+		// Get a handle on the topic's parent match
+		var $match = $(this).parent()
 		
-		// Promote the selected topic to the correct match in the next round
-		// Find which match this is within the round
-		var matchInCurrentRound = getPrefixedNumberFromClassList($match, "match-");
-		console.log("Match #" + matchInCurrentRound + " winner goes in to match " + (Math.ceil(matchInCurrentRound/2)) );
+		// If the match isn't already decided, continue
+		if (! $match.is(".decided")) {
+
+			// Get a handle to the round and bracket numbers
+			var roundNum = getPrefixedNumberFromClassList( $match.parent(), "round-") * 1,
+				bracketNum = getPrefixedNumberFromClassList( $(this).parents(".bracket"), "bracket-") * 1;
+
+			// Set the match as decided
+			$match.addClass("decided");
+				
+			if ($match.has(".selected").length) {
+				$match.find(".selected").removeClass("selected");
+			}
+			$(this).addClass("selected");
+		
+			// Promote the selected topic to the correct match in the next round
+			// Find which match this is within the round
+			var matchInCurrentRound = getPrefixedNumberFromClassList($match, "match-"),
+				matchInNextRound = Math.ceil(matchInCurrentRound/2),
+				nextRound = getPrefixedNumberFromClassList($match.parent(), "round-") * 1 + 1;
+		
+			console.log(".bracket-" + bracketNum + " .round-" + nextRound + " match-" + matchInNextRound);
+			$(".bracket-" + bracketNum + " .round-" + (roundNum + 1) + " .match-" + matchInNextRound).append(
+				"<div class='topic'>" + $(this).html() + "</div>"
+			);
+
+		}
 		
 	});
 
