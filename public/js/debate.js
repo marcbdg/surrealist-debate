@@ -11,31 +11,57 @@ $( document ).ready(function() {
 	// When a topic is selected, advance it to the next round
 	$(document).on("click", ".topic", function(){
 		
-		// Get a handle on the topic's parent match
+		// Get a handle to the topic, match, and round
 		var $topic = $(this),
-			$match = $topic.parent()
+			$match = $topic.parent(),
+			$round = $match.parent();
 		
 		// If the match isn't already decided, continue
 		if (! $match.is(".decided")) {
 
-			// Get a handle to the round and bracket numbers
-			var roundNum = getPrefixedNumberFromClassList( $match.parent(), "round-") * 1,
-				bracketNum = getPrefixedNumberFromClassList( $topic.parents(".bracket"), "bracket-") * 1;
-
 			// Set the topic as selected and the match as decided
 			$topic.addClass("selected");
 			$match.addClass("decided");
-		
-			// Promote the selected topic to the correct match in the next round
-			var matchInCurrentRound = getPrefixedNumberFromClassList($match, "match-"),
-				matchInNextRound = Math.ceil(matchInCurrentRound/2),
-				nextRound = getPrefixedNumberFromClassList($match.parent(), "round-") * 1 + 1;
-		
-			console.log(".bracket-" + bracketNum + " .round-" + nextRound + " match-" + matchInNextRound);
-			$(".bracket-" + bracketNum + " .round-" + (roundNum + 1) + " .match-" + matchInNextRound).append(
-				"<div class='topic'>" + $topic.html() + "</div>"
-			);
+								
+			// Promote the selected topic to the correct match in the next round			
+			// If this is the finals, just declare the winner
+			if ($round.is(".round-final")) {
+				console.log("declaring winner");
+				alert("WINNER!: " + $topic.html());
 
+			// If this is the semifinals, promote to the finals
+			} else if ($round.is(".round-semi")) {
+				console.log("promoting to final");
+				$(".round-final").show().find(".match").append("<div class='topic'>" + $topic.html() + "</div>");
+
+			// Otherwise, check the round number to find out where to promote the selected topic
+			} else {
+				
+				console.log("checking round in bracket");
+				// Get a handle to the round and bracket numbers
+				var roundNum = getPrefixedNumberFromClassList( $round, "round-") * 1,
+					bracketNum = getPrefixedNumberFromClassList( $topic.parents(".bracket"), "bracket-") * 1,
+					nextRoundNum = roundNum + 1;
+					
+				// If this is the last round in the bracket, promote to the division semifinal
+				if (! $(".round-" + nextRoundNum).length ) {
+					console.log("promoting to semi");
+					var $division = $round.parents(".division");
+					$division.find(".round-semi").show().find(".match").append("<div class='topic'>" + $topic.html() + "</div>");				
+				
+				// Otherwise, just promote to the correct match in the next round of the current bracket
+				} else {
+					console.log("promoting to next round in bracket");
+					var matchInCurrentRound = getPrefixedNumberFromClassList($match, "match-"),
+						matchInNextRound = Math.ceil(matchInCurrentRound/2);
+		
+					console.log(".bracket-" + bracketNum + " .round-" + nextRoundNum + " match-" + matchInNextRound);
+					$(".bracket-" + bracketNum + " .round-" + nextRoundNum + " .match-" + matchInNextRound).append(
+						"<div class='topic'>" + $topic.html() + "</div>"
+					);
+				}
+			}
+						
 		}
 		
 	});
